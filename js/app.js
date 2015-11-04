@@ -24,7 +24,10 @@
         }
     //    console.log(currentCategory);
 
-
+      $scope.save = function(bookmark)  {
+        console.log(bookmark);
+        console.log(bookmark.url);
+      }
     });
 
 })();

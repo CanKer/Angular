@@ -32,18 +32,23 @@
 
               <!--content-->
               <h2>Categoria: {{currentCategory}}
-              <a href="#" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#bookmarkModal"><i class="glyphicon glyhicon-plus-sign"></i>New Bookmark</a></h2>
+                <a href="#" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#bookmarkModal"><i class="glyphicon glyhicon-plus-sign"></i>New Bookmark</a></h2>
               <ul>
-                <li ng-repeat="bookmark in bookmarks | filter: {category: currentCategory}"><p>
-                  <a href="{{bookmark.url}}">{{bookmark.name}}</a>
-                  <i class="glyphicon glyphicon-trash"></i>
-                  <i class="glyphicon glyphicon-pencil"></i><br/>
-                  <small>{{bookmark.url}}</small>
-                </p></li>
+                <li ng-repeat="bookmark in bookmarks | filter: {category: currentCategory}">
+                  <p>
+                    <a href="{{bookmark.url}}">{{bookmark.name}}</a>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <br/>
+                    <small>{{bookmark.url}}</small>
+                  </p>
+                </li>
               </ul>
-            </div> <!--/col9-->
+            </div>
+            <!--/col9-->
 
-          </div><!--/padding-->
+          </div>
+          <!--/padding-->
         </div>
         <!--/Main-->
       </div>
@@ -59,7 +64,8 @@
 </body>
 
 
-<div class="modal fade" id="bookmarkModal">
+
+<div class="modal fade" id="bookmarkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -67,10 +73,11 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h4 class="modal-title" style="color: black">Bookmark</h4>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
         <form class="" id="bookmarkForm">
+
           <div class="form-group">
             <label for="title">Title</label>
             <div class="input-group">
@@ -89,24 +96,26 @@
               <input ng-model="bookmark.url" id="url" class="form-control" type="url" placeholder="Enter URL">
             </div>
           </div>
-        </form>
-        <div class="form-group">
-          <label for="categor">Category</label>
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class="glyphicon glyphicon-link"></i>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="glyphicon glyphicon-folder-open"></i>
+              </div>
+              <select ng-model="bookmark.category" ng-options="value for value in categories" id="category" class="form-control">
+              </select>
             </div>
-            <select class="form-control" ng-model="bookmark.category" ng-options="value for value in categories">
           </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" ng-click="save(bookmark)" class="btn btn-primary">Save changes</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
+
 
 
 </html>
